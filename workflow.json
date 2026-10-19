@@ -1,0 +1,14 @@
+{
+  "name": "Santander - RPA de Triagem de Compras",
+  "nodes": [
+    {"parameters": {"httpMethod": "POST", "path": "rpa-solicitacao", "responseMode": "usingRespondToWebhook", "options": {}}, "id": "8c3b8144-9325-4495-b679-2f57d0dc09d1", "name": "Receber solicitação", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [240, 300], "webhookId": "a3b107e9-416c-4c45-a0f0-3d63d2f3ea21"},
+    {"parameters": {"method": "POST", "url": "http://python-rpa:8000/processar", "sendBody": true, "specifyBody": "json", "jsonBody": "={{ $json.body }}", "options": {"timeout": 30000}}, "id": "4bd3b408-1070-4baf-9f88-7f639aec2cb7", "name": "Processar com Python", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [500, 300]},
+    {"parameters": {"respondWith": "json", "responseBody": "={{ $json }}", "options": {"responseCode": 200}}, "id": "2a81786d-46fb-4da7-82cd-6b63eae52a58", "name": "Retornar resultado", "type": "n8n-nodes-base.respondToWebhook", "typeVersion": 1.1, "position": [760, 300]}
+  ],
+  "connections": {"Receber solicitação": {"main": [[{"node": "Processar com Python", "type": "main", "index": 0}]]}, "Processar com Python": {"main": [[{"node": "Retornar resultado", "type": "main", "index": 0}]]}},
+  "active": false,
+  "settings": {"executionOrder": "v1"},
+  "versionId": "2b17d7c4-df1a-42c0-b70d-d8461f1126e2",
+  "meta": {"templateCredsSetupCompleted": true},
+  "tags": []
+}

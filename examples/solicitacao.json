@@ -1,0 +1,8 @@
+{
+  "solicitacao_id": "SC-2026-001",
+  "solicitante": "Cleber Silva",
+  "itens": [
+    {"descricao": "Teclado sem fio", "quantidade": 2, "valor_unitario": 189.90},
+    {"descricao": "Monitor 24 polegadas", "quantidade": 1, "valor_unitario": 899.00}
+  ]
+}
